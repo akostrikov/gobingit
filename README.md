@@ -29,7 +29,7 @@ http://www.perl.com/pub/2002/10/01/hashes.html
 
 mkdir test
 cd test
-../git-inti.sh .
+../git-init.sh .
 cp ../gobingit  .
 ./gobingit
 git log
