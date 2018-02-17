@@ -1,4 +1,3 @@
-
 require "zlib"
 
 require 'fileutils'
@@ -37,12 +36,11 @@ File.open(path, 'w') { |f| f.write zlib_content }
 #s2 = zi.inflate(x2)
 
 # Create commit
-# echo 'second commit' | git commit-tree 6398107bf9b91a96e55e90959994958705325d06 -p 519b6efacb56a32930a7b22dafe903aea8a76114
-#echo "71ba5227f9b7b9d75b7a5a7904486b78000f0318" > .git/refs/heads/master
+#{}`echo 'second commit' | git commit-tree 6398107bf9b91a96e55e90959994958705325d06 -p 519b6efacb56a32930a7b22dafe903aea8a76114`
+#{}`echo "71ba5227f9b7b9d75b7a5a7904486b78000f0318" > .git/refs/heads/master`
 # commit {size}\0
 str = <<STR
 tree 6398107bf9b91a96e55e90959994958705325d06
-parent 519b6efacb56a32930a7b22dafe903aea8a76114
 author Alexandr Kostrikov <alexandr.kostrikov@gmail.com> 1494000784 +0300
 committer Alexandr Kostrikov <alexandr.kostrikov@gmail.com> 1494000784 +0300
 
@@ -55,12 +53,14 @@ sha1 = Digest::SHA1.hexdigest(store)
 puts sha1
 zlib_content = Zlib::Deflate.deflate(store)
 # path = ".git/objects/bd/9dbf5aae1a3862dd1526723246b20206e5fc33"
-path = '.git/objects/' + sha1[0,2] + '/' + sha1[2,38]
+commit_path = '.git/objects/' + sha1[0,2] + '/' + sha1[2,38]
 
-puts path
-FileUtils.mkdir_p(File.dirname(path))
-File.open(path, 'w') { |f| f.write zlib_content }
-# echo "41f3e1eac8f408c95562601ea14d0c0587112cc7" > .git/refs/heads/master
+puts commit_path
+FileUtils.mkdir_p(File.dirname(commit_path))
+File.open(commit_path, 'w') { |f| f.write zlib_content }
+
+commit_write = "echo #{sha1} > .git/refs/heads/master"
+system(commit_write)
 # The check
 =begin
 zi = Zlib::Inflate.new

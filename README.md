@@ -1,5 +1,17 @@
 README.md
 
+GIT INIT
+====
+git status
+	index file
+	tree object
+
+git commit
+git switch branch
+
+git remotes
+
+diffs
 https://git-scm.com/book/en/v2/Git-Internals-Git-Objects
 https://git-scm.com/book/en/v2/Git-Internals-Packfiles
 https://git-scm.com/book/en/v2/Git-Internals-Git-References
@@ -15,16 +27,9 @@ https://help.github.com/articles/signing-commits-using-gpg/
 http://cpansearch.perl.org/src/JESSE/perl-5.14.0/hv.c
 http://www.perl.com/pub/2002/10/01/hashes.html
 
-mkdir .git
-mkdir .git/objects
-mkdir .git/objects/info
-mkdir .git/objects/pack
-mkdir .git/branches
-echo -n "ref: refs/heads/master" > .git/HEAD
-mkdir .git/refs
-mkdir .git/refs/tags
-mkdir .git/refs/heads
-mkdir .git/config
-mkdir .git/hooks
-mkdir .git/description
-mkdir .git/info
+mkdir test
+cd test
+../git-inti.sh .
+cp ../gobingit  .
+./gobingit
+git log
